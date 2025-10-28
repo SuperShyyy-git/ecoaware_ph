@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto p-8">
+    <h1 class="text-3xl font-bold mb-4">Admin Dashboard</h1>
+    <p>Welcome, {{ user.username }}! Here you can manage the site.</p>
+
+    <div class="mt-6 space-y-4">
+        <a href="{% url 'user_list' %}" class="text-green-600 hover:underline">Manage Users</a><br>
+        <a href="{% url 'article_create' %}" class="text-green-600 hover:underline">Create New Article</a><br>
+        <a href="{% url 'campaign_create' %}" class="text-green-600 hover:underline">Create New Campaign</a>
+    </div>
+</div>
+{% endblock %}

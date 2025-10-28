@@ -1,0 +1,10 @@
+<div class="d-flex justify-content-center gap-3">
+    {% if request.user.is_authenticated and request.user.is_staff %}
+        {% include 'atoms/button.html' with text="Go to User List" url=user_list_url variant="primary" %}
+        {% include 'atoms/button.html' with text="Admin Dashboard" url=admin_dashboard_url variant="secondary" %}
+    {% elif request.user.is_authenticated %}
+        {% include 'atoms/button.html' with text="Go to Dashboard" url=user_dashboard_url variant="primary" %}
+    {% else %}
+        {% include 'atoms/button.html' with text="Login" url=login_url variant="success" %}
+    {% endif %}
+</div>

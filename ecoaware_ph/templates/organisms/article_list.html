@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="space-y-8">
+        {% if articles %}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for article in articles %}
+                    {% include 'molecules/article_card.html' with article=article %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="p-6 bg-yellow-100 border border-yellow-300 rounded-lg text-yellow-800">
+                <h2 class="font-bold text-xl mb-2">No Articles Found</h2>
+                <p>It looks like there aren't any articles published yet. Check back later!</p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

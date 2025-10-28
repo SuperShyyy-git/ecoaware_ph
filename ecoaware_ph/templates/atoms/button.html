@@ -1,0 +1,24 @@
+{# atoms/button.html #}
+{% if url %}
+    {# Render as a link button if URL is provided #}
+    <a href="{{ url }}" class="btn btn-{{ variant|default:'primary' }}">
+        {% if icon %}
+            <i class="bi bi-{{ icon }} me-2"></i>
+        {% endif %}
+        {{ text }}
+    </a>
+{% else %}
+    {# Render as a regular button #}
+    <button 
+        type="{{ type|default:'button' }}" 
+        class="btn btn-{{ variant|default:'primary' }} {% if icon %}d-flex align-items-center{% endif %}">
+        
+        {% if icon %}
+            <i class="bi bi-{{ icon }} me-2"></i>
+        {% endif %}
+        
+        {{ text }}
+    </button>
+{% endif %}
+
+

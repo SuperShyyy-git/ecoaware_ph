@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Campaigns{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% if campaigns %}
+        {% for campaign in campaigns %}
+            {% include 'molecules/campaign_card.html' with campaign=campaign is_admin=is_admin %}
+        {% endfor %}
+    {% else %}
+        <p>No campaigns found.</p>
+    {% endif %}
+</div>
+{% endblock %}

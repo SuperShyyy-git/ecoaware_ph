@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Articles - EcoAware PH{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>
+            {% include 'atoms/icon.html' with name='file-earmark-text' %}
+            Environmental Articles
+        </h1>
+        {% if user.is_admin %}
+            {% include 'atoms/button.html' with url='article_create' text='Add New Article' variant='success' icon='plus-circle' %}
+        {% endif %}
+    </div>
+
+    {% include 'molecules/breadcrumb.html' with breadcrumbs=breadcrumbs %}
+
+    {% include 'organisms/article_list.html' with articles=articles is_admin=user.is_admin %}
+</div>
+{% endblock %}

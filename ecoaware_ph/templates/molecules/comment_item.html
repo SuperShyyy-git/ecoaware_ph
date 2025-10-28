@@ -1,0 +1,18 @@
+<div class="d-flex mb-4 p-3 bg-light rounded shadow-sm">
+    <div class="flex-shrink-0">
+        {% include 'atoms/icon.html' with name='person-circle' extra_classes='fs-3 text-muted' %}
+    </div>
+    <div class="flex-grow-1 ms-3">
+        <h6 class="mb-1">
+            {{ comment.author.username }}
+            <small class="text-muted ms-2">
+                {% include 'atoms/icon.html' with name='clock' %}
+                {{ comment.created_at|timesince }} ago
+            </small>
+        </h6>
+        <p class="mb-1">{{ comment.content }}</p>
+        {% if is_admin or request.user == comment.author %}
+            {% include 'atoms/button.html' with url=comment.get_delete_url text='Delete' variant='link' size='btn-sm' extra_classes='text-danger p-0' icon='trash' %}
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,43 @@
+{% extends 'layouts/centered_card.html' %}
+
+{% block title %}Login - EcoAware PH{% endblock %}
+
+{% block card_content %}
+<div class="bg-white p-6 rounded-lg shadow-xl">
+    <div class="text-center bg-green-700 text-white p-4 rounded-t-lg -mx-6 -mt-6 mb-6">
+        <h3 class="text-2xl font-bold">
+            {% include 'atoms/icon.html' with name='box-arrow-in-right' %}
+            Login
+        </h3>
+    </div>
+    
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        
+        {% for field in form %}
+            <div class="space-y-1">
+                <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                    {{ field.label }}
+                </label>
+                
+                {# CRITICAL FIX: The styling must be defined in forms.py. Simple rendering is correct here. #}
+                {{ field }} 
+                
+                {% if field.errors %}
+                    <p class="text-sm text-red-600">{{ field.errors|striptags }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+        
+        <button type="submit" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+            {% include 'atoms/icon.html' with name='unlock' %} Login
+        </button>
+    </form>
+    
+    <div class="text-center mt-6">
+        <p class="text-sm text-gray-600">Don't have an account? 
+            <a href="{% url 'users:register' %}" class="font-medium text-green-600 hover:text-green-500">Register here</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

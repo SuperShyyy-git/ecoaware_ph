@@ -1,0 +1,58 @@
+{% extends 'layouts/centered_card.html' %}
+
+{% block title %}Register - EcoAware PH{% endblock %}
+
+{% block card_content %}
+<div class="bg-white p-6 rounded-lg shadow-xl">
+    <div class="text-center bg-green-700 text-white p-4 rounded-t-lg -mx-6 -mt-6 mb-6">
+        <h3 class="text-2xl font-bold">
+            {# Using your existing icon component for registration/person #}
+            {% include 'atoms/icon.html' with name='person-add' %}
+            Create Account
+        </h3>
+    </div>
+    
+    {# Display any success/error messages, handled by Django's messages framework in base.html #}
+    
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        
+        {# Display non-field errors first (like password mismatch) #}
+        {% if form.non_field_errors %}
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {# Loop through the fields (username, password, password confirmation) #}
+        {% for field in form %}
+            <div class="space-y-1">
+                <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
+                    {{ field.label }}
+                </label>
+                
+                {# CRITICAL: Simple rendering. Styling comes from your forms.py #}
+                {{ field }} 
+                
+                {# Display field-specific errors #}
+                {% if field.errors %}
+                    <p class="text-sm text-red-600">{{ field.errors|striptags }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+        
+        {# Submit Button #}
+        <button type="submit" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+            Register Account
+        </button>
+    </form>
+    
+    <div class="text-center mt-6">
+        <p class="text-sm text-gray-600">Already have an account? 
+            <a href="{% url 'users:login' %}" class="font-medium text-green-600 hover:text-green-500">Login here</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Access Denied{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-16 text-center">
+    <div class="max-w-md mx-auto">
+        <div class="text-red-600 text-6xl mb-4">🚫</div>
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">Access Denied</h1>
+        <p class="text-gray-600 mb-8">
+            You don't have permission to access this page. This area is restricted to administrators only.
+        </p>
+        <div class="space-x-4">
+            <a href="{% url 'home' %}" class="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700">
+                Go to Homepage
+            </a>
+            <a href="{% url 'user_dashboard' %}" class="bg-gray-600 text-white px-6 py-3 rounded hover:bg-gray-700">
+                Go to Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

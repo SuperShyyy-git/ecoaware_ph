@@ -1,0 +1,67 @@
+<footer class="footer">
+    <div class="container">
+        <div class="footer__grid">
+            <!-- About Section -->
+            <div class="footer__col">
+                <div class="footer__brand">
+                    <i class="fas fa-leaf"></i>
+                    <span>EcoAware PH</span>
+                </div>
+                <p class="footer__description">
+                    Promoting environmental awareness and sustainability across the Philippines through education, community engagement, and action.
+                </p>
+                <div class="footer__social">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="footer__col">
+                <h4 class="footer__title">Quick Links</h4>
+                <ul class="footer__links">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'article_list' %}">Articles</a></li>
+                    <li><a href="{% url 'campaign_list' %}">Campaigns</a></li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                </ul>
+            </div>
+            
+            <!-- Resources -->
+            <div class="footer__col">
+                <h4 class="footer__title">Resources</h4>
+                <ul class="footer__links">
+                    <li><a href="#">Environmental Tips</a></li>
+                    <li><a href="#">Guidelines</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <!-- Newsletter -->
+            <div class="footer__col">
+                <h4 class="footer__title">Stay Updated</h4>
+                <p>Subscribe to our newsletter for the latest environmental news and campaigns.</p>
+                <form class="newsletter-form" method="POST" action="#">
+                    {% csrf_token %}
+                    <input type="email" name="email" placeholder="Your email" required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="footer__bottom">
+            <p>&copy; 2024 EcoAware PH. All rights reserved.</p>
+            <div class="footer__legal">
+                <a href="#">Privacy Policy</a>
+                <span>|</span>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>

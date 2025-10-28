@@ -1,0 +1,7 @@
+{% if request.user.is_staff and user != request.user %}
+    {% include "atoms/button.html" with text="Edit" url=user.get_edit_url variant="primary" icon="pencil" %}
+    <form action="{{ user.get_delete_url }}" method="post" style="display:inline;">
+        {% csrf_token %}
+        {% include "atoms/button.html" with text="Delete" type="submit" variant="danger" icon="trash" %}
+    </form>
+{% endif %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Campaigns - EcoAware PH{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>
+            {% include 'atoms/icon.html' with name='megaphone' %}
+            Active Campaigns
+        </h1>
+        {% if user.is_admin %}
+            {% include 'atoms/button.html' with url='campaign_create' text='Create New Campaign' variant='danger' icon='plus-circle' %}
+        {% endif %}
+    </div>
+
+    {% include 'molecules/breadcrumb.html' %}
+
+    <div class="row">
+        {% for campaign in campaigns %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                {% include 'molecules/campaign_card.html' with campaign=campaign %}
+            </div>
+        {% empty %}
+            <div class="col-12">
+                {% include 'atoms/alerts/alert.html' with message='No active campaigns at the moment.' type='info' icon='info-circle' %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

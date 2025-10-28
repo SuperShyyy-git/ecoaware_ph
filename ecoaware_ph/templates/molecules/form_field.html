@@ -1,0 +1,16 @@
+<div class="mb-3">
+    <label for="{{ field.id_for_label }}" class="form-label">
+        {{ field.label }}
+    </label>
+    
+    {# CRITICAL FIX: Simply render the field. Styling must come from forms.py. #}
+    {{ field }}
+    
+    {% if field.errors %}
+        <div class="invalid-feedback d-block text-danger small">
+            {% for error in field.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,8 @@
+<form method="GET" action="{{ search_url|default:'#' }}" class="d-flex">
+    <div class="input-group">
+        {% include 'atoms/input_field.html' with type='search' name='q' placeholder='Search...' value=request.GET.q extra_classes='border-end-0' %}
+        <button class="btn btn-outline-success" type="submit">
+            {% include 'atoms/icon.html' with name='search' %}
+        </button>
+    </div>
+</form>

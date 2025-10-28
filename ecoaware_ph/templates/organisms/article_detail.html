@@ -1,0 +1,13 @@
+<h1>{{ article.title }}</h1>
+<p>{{ article.content|safe }}</p>
+
+{% if request.user.is_staff %}
+    {# Edit button #}
+    {% include "atoms/button.html" with text="Edit" url=article.get_edit_url variant="primary" icon="pencil" %}
+
+    {# Delete button in a POST form #}
+    <form action="{{ article.get_delete_url }}" method="post" style="display:inline;">
+        {% csrf_token %}
+        {% include "atoms/button.html" with text="Delete" type="submit" variant="danger" icon="trash" %}
+    </form>
+{% endif %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - EcoAware PH{% endblock %}
+
+{% block content %}
+<style>
+   
+    .hero-section {
+        background-color: #e6f7ef;
+        border-radius: 0 !important; 
+        padding-top: 6rem !important;
+        padding-bottom: 6rem !important;
+    }
+
+    .hero-section h1 {
+        color: #198754; 
+        font-weight: 700;
+    }
+
+ 
+    .what-we-do-icon {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .what-we-do-icon:hover {
+        transform: translateY(-5px); 
+    }
+</style>
+
+<header class="p-5 mb-4 rounded-3 text-center hero-section">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Be the Change for the Philippines</h1>
+        <p class="fs-4 text-muted mb-5">Empowering Filipinos with knowledge and tools for environmental action and sustainability.</p>
+        
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            {% include 'atoms/button.html' with url='articles:article_list' text='Read Our Latest Articles' variant='success' size='btn-lg' icon='book' %}
+            
+            {% include 'atoms/button.html' with url='users:register' text='Join the Community' variant='outline-success' size='btn-lg' icon='person-plus' %}
+        </div>
+    </div>
+</header>
+
+<div class="container my-5">
+    <h2 class="mb-5 text-center fw-bold">What We Do</h2>
+    <div class="row text-center mb-5">
+        
+        <div class="col-md-4 mb-4 what-we-do-icon">
+            {% include 'atoms/icon.html' with name='lightbulb' extra_classes='fs-1 text-primary' %}
+            <h4 class="mt-3 text-success">Educate</h4>
+            <p class="text-secondary">Provide evidence-based articles and resources on local environmental challenges.</p>
+        </div>
+        
+        <div class="col-md-4 mb-4 what-we-do-icon">
+            {% include 'atoms/icon.html' with name='hand-heart' extra_classes='fs-1 text-danger' %}
+            <h4 class="mt-3 text-success">Mobilize</h4>
+            <p class="text-secondary">Run campaigns for clean-ups, donations, and policy advocacy.</p>
+        </div>
+        
+        <div class="col-md-4 mb-4 what-we-do-icon">
+            {% include 'atoms/icon.html' with name='chat-dots' extra_classes='fs-1 text-info' %}
+            <h4 class="mt-3 text-success">Connect</h4>
+            <p class="text-secondary">Build a community of eco-conscious users, volunteers, and organizations.</p>
+        </div>
+    </div>
+    
+    <hr class="my-5">
+    
+    <h2 class="mt-5 mb-4 text-center fw-bold">Featured Articles</h2>
+    <div class="row">
+        {% for article in featured_articles %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                {# Assumes article_card is styled with shadows/hover effects #}
+                {% include 'molecules/article_card.html' with article=article is_admin=False %}
+            </div>
+        {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted p-5 border rounded">🌍 Loading our top stories...</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
